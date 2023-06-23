@@ -268,6 +268,23 @@ the objective, and differentiating that estimate. Usually a single sample of
 $\epsilon$ is enough to produce a good approximation.
 
 
+## MODEL ARCHITECTURE
+We will train the model on the CIFAR-10 dataset. For the encoder-decoder
+structure we will use a U-Net with the contraction path corresponding to the
+encoder and the expansion path corresponding to the decoder.
+
+For the contraction path we will employ a standard ResNet with three separate
+groups of blocks, every time reducing the spatial dimensions in half and
+doubling the number of channels. In every group there are four residual blocks:
+the first block will downscale the input, and the other three blocks are standard
+residual blocks and will operate on the same scale, i.e., number of channels and
+spatial dimensions remain fixed. The expansion path will use the same ResNet,
+but instead the first block of each group will upscale the image, doubling the
+spatial size and reducing the channels in half.
+
+!["U-Net"](img/u_net.png)
+
+
 ## TRAINING AND GENERATION
 To train the model simply run:
 ```bash
