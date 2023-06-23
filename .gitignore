@@ -1,0 +1,12 @@
+# Virtual Environment
+.venv
+
+# Byte-compiled Files
+__pycache__
+bin/
+
+# Datasets
+datasets
+
+# logs folder stores logging info and checkpoints from training
+logs
