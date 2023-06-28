@@ -4,9 +4,16 @@ Variational Autoencoders were first described in the paper:
  * "Auto-encoding variational Bayes" by Kingma and Welling,
  ([here](https://arxiv.org/abs/1312.6114))
 
-A great tutorial on the Variational Autoencoder can be found in the paper:
- * "Tutorial on Variational Autoencoders" by Carl Doersch,
+Some great tutorials on the Variational Autoencoder can be found in the papers:
+ * "Tutorial on variational autoencoders" by Carl Doersch,
  ([here](https://arxiv.org/abs/1606.05908))
+ * "An introduction to variational autoencoders" by Kingma and Welling,
+ ([here](https://arxiv.org/abs/1906.02691))
+
+A very simple and useful implementation of an Autoencoder and a Variational
+autoencoder can be found in this [blog post](https://avandekleut.github.io/vae/).
+The autoencoders are trained on MNIST and some cool visualizations of the latent
+space are shown.
 
 The equation that is at the core of the variational autoencoder is:
 
