@@ -71,7 +71,7 @@ class ResBlock(nn.Module):
             nn.ReLU(),
             nn.Conv2d(in_chan, in_chan // 2, kernel_size=1),
 
-            # 3x3 convolution if same or downscale, 4x4 deconvolution if upscale
+            # 3x3 convolution if same or downscale, 4x4 transposed convolution if upscale
             PositionalNorm(in_chan // 2),
             nn.ReLU(),
             bottleneck,
