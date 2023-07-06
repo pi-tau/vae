@@ -291,6 +291,9 @@ spatial size and reducing the channels in half.
 
 !["U-Net"](img/u_net.png)
 
+For more on the ResNet check out a
+[blog post](https://pi-tau.github.io/posts/res-nets/) I wrote on the topic.
+
 
 ## TRAINING AND GENERATION
 To train the model simply run:
