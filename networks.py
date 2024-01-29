@@ -49,13 +49,13 @@ class ResBlock(nn.Module):
         super().__init__()
         assert scale in ["same", "upscale", "downscale"]
         if scale == "same":
-            bottleneck = nn.Conv2d(in_chan//2, out_chan, kernel_size=3, padding="same")
+            bottleneck = nn.Conv2d(in_chan//2, in_chan//2, kernel_size=3, padding="same")
             stride = 1
         elif scale == "downscale":
-            bottleneck = nn.Conv2d(in_chan//2, out_chan, kernel_size=3, stride=2, padding=1)
+            bottleneck = nn.Conv2d(in_chan//2, in_chan//2, kernel_size=3, stride=2, padding=1)
             stride = 2
         elif scale == "upscale":
-            bottleneck = nn.ConvTranspose2d(in_chan//2, out_chan, kernel_size=4, stride=2, padding=1)
+            bottleneck = nn.ConvTranspose2d(in_chan//2, in_chan//2, kernel_size=4, stride=2, padding=1)
             stride = 1
 
         # The residual block employs the bottleneck architecture as described
@@ -69,17 +69,17 @@ class ResBlock(nn.Module):
             # 1x1 convolution
             PositionalNorm(in_chan),
             nn.ReLU(),
-            nn.Conv2d(in_chan, in_chan // 2, kernel_size=1),
+            nn.Conv2d(in_chan, in_chan//2, kernel_size=1),
 
             # 3x3 convolution if same or downscale, 4x4 transposed convolution if upscale
-            PositionalNorm(in_chan // 2),
+            PositionalNorm(in_chan//2),
             nn.ReLU(),
             bottleneck,
 
             # 1x1 convolution
-            PositionalNorm(out_chan),
+            PositionalNorm(in_chan//2),
             nn.ReLU(),
-            nn.Conv2d(out_chan, out_chan, kernel_size=1),
+            nn.Conv2d(in_chan//2, out_chan, kernel_size=1),
         )
 
         # If channels or spatial dimensions are modified then transform the
